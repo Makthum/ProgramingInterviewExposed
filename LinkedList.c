@@ -21,14 +21,44 @@ void insertback(int data, Node **head);
 
 int main(void)
 {
-Node *head= (Node *)(malloc(sizeof (Node)));
-Node temp;
-temp.data=10;
-temp.next=NULL;
-*head=temp;
-insertfront(5,&head);
-insertback(15,&head);
-printValue(head);
+    int i=0;
+    int data=0;
+    Node *head= NULL;
+
+    while(i!=9)
+    {
+      printf("\n1: Insert element at the start");
+        printf("\n2: Insert element at the last");
+        printf("\n3: Delete element at the start");
+        printf("\n4: Delete element at the last");
+        printf("\n5: Insert element at a position");
+        printf("\n6: Delete element at a position");
+        printf("\n7: Empty Linked List");
+        printf("\n8: Print Linked List ");
+        printf("\n9 : Exit");
+        scanf("%d",&i);
+
+        switch(i)
+        {
+            case 1:
+            {
+              printf(" Enter the value for element ");
+              scanf("%d",&data);
+              insertfront(data,&head);
+              break;
+            }
+            case 2:
+            {
+              printf(" Enter the value for element ");
+              scanf("%d",&data);
+              insertback(data,&head);
+              break;
+            }
+            case 8:
+                printValue(head);
+        }
+    }
+
 
 return 0;
 }
@@ -38,28 +68,37 @@ void insertback(int data, Node **head)
 	Node *temp1= (Node *)(malloc(sizeof (Node)));
    temp1= *head;
 
-	Node temp;
-	temp.data=data;
-	temp.next=NULL;
+	Node *temp= (Node *)(malloc(sizeof (Node)));
+	temp->data=data;
+	temp->next=NULL;
 	while(temp1->next!=NULL)
 	{
 		temp1=temp1->next;
 
 	}
-	temp1->next=&temp;
+	temp1->next=temp;
 
 }
  void insertfront(int data,Node **head)
 {
-//	 Node *temp= (Node *)(malloc(sizeof (Node)));
-//	temp->data=data;
-//	temp->next=*head;
-	 Node temp;
-	 temp.data=data;
-	 temp.next=*head;
+        Node *temp= (Node *)(malloc(sizeof (Node)));
+	 temp->data=data;
+     if(*head==NULL)
+     {
+	 
+	 temp->next=NULL;
+         *head=temp;
 
-	*head=&temp;
-
+	
+     }
+     else
+     {
+             
+             
+         temp->next=*head;
+         *head=temp;
+     }
+    
 
 }
 
@@ -69,7 +108,7 @@ void insertback(int data, Node **head)
 	 temp=head;
 	 while(temp != NULL )
 	 {
-		 printf("%d",temp->data);
+		 printf("%d\t",temp->data);
 		 temp=temp->next;
          }
 

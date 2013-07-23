@@ -4,7 +4,7 @@
  * LinkedList.c
  *
  *  Created on: Jul 21, 2013
- *      Author: Makthum
+ *      Author: Mohamed Makthum Mohamed
  */
 #include <stdio.h>
 #include <stdlib.h>

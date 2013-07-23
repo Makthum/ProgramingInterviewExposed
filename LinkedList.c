@@ -18,7 +18,7 @@ void insertfront(int data, Node **head);
 void printValue(Node *head);
 void insertback(int data, Node **head);
 void deleteStart(Node **head);
-
+void deleteEnd(Node **head);
 int main(void)
 {
     int i=0;
@@ -60,6 +60,15 @@ int main(void)
                 printValue(head);
                 printf("\n");
                 deleteStart(&head);
+                printValue(head);
+                break;
+            }
+            case 4:
+            {
+                printf("Delete at the end");
+                printValue(head);
+                printf("\n");
+                deleteEnd(&head);
                 printValue(head);
                 break;
             }
@@ -126,4 +135,15 @@ void insertback(int data, Node **head)
  void deleteStart(Node **head)
  {
      *head=(*head)->next;
+ }
+ 
+ void deleteEnd(Node **head)
+ {
+        Node *temp= (Node *)(malloc(sizeof (Node)));
+        temp=*head;
+        while(temp->next->next!=NULL)
+        {
+           temp=temp->next; 
+        }
+        temp->next=NULL;
  }

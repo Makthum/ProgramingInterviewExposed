@@ -17,7 +17,7 @@ typedef struct _Node
 void insertfront(int data, Node **head);
 void printValue(Node *head);
 void insertback(int data, Node **head);
-
+void deleteStart(Node **head);
 
 int main(void)
 {
@@ -53,6 +53,15 @@ int main(void)
               scanf("%d",&data);
               insertback(data,&head);
               break;
+            }
+            case 3:
+            {
+                printf("Delete at the start");
+                printValue(head);
+                printf("\n");
+                deleteStart(&head);
+                printValue(head);
+                break;
             }
             case 8:
                 printValue(head);
@@ -114,4 +123,7 @@ void insertback(int data, Node **head)
 
  }
 
-
+ void deleteStart(Node **head)
+ {
+     *head=(*head)->next;
+ }

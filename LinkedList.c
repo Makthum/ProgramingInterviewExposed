@@ -19,6 +19,7 @@ void printValue(Node *head);
 void insertback(int data, Node **head);
 void deleteStart(Node **head);
 void deleteEnd(Node **head);
+Node* insertAt(Node **head,int value);
 int main(void)
 {
     int i=0;
@@ -72,6 +73,15 @@ int main(void)
                 printValue(head);
                 break;
             }
+            case 5:
+            {
+                printf("Insert element after u want to insert");
+                printValue(head);
+                scanf("%d",&data)
+                insertAt(&head,data);
+                printValue(head);
+                break;
+            }
             case 8:
                 printValue(head);
         }
@@ -119,7 +129,16 @@ void insertback(int data, Node **head)
     
 
 }
-
+ Node* insertAt(Node **head,int value)
+ {
+     	Node *temp= (Node *)(malloc(sizeof (Node)));
+        temp=*head;
+        while(temp->data!=value)
+        {
+            temp=temp->next;
+        }
+        return temp;
+ }
  void printValue(Node *head)
  {
 	Node *temp= (Node *)(malloc(sizeof (Node)));

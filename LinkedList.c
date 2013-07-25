@@ -19,11 +19,11 @@ void printValue(Node *head);
 void insertback(int data, Node **head);
 void deleteStart(Node **head);
 void deleteEnd(Node **head);
-Node* insertAt(Node **head,int value);
+Node* insertAt(Node **head,int data,int value);
 int main(void)
 {
     int i=0;
-    int data=0;
+    int data=0,value=0;
     Node *head= NULL;
 
     while(i!=9)
@@ -77,8 +77,10 @@ int main(void)
             {
                 printf("Insert element after u want to insert");
                 printValue(head);
-                scanf("%d",&data)
-                insertAt(&head,data);
+                scanf("%d",&data);
+                printf("Insert element u want to enter");
+                scanf("%d",&value);
+                insertAt(&head,data,value);
                 printValue(head);
                 break;
             }
@@ -129,14 +131,18 @@ void insertback(int data, Node **head)
     
 
 }
- Node* insertAt(Node **head,int value)
+ Node* insertAt(Node **head,int data,int value)
  {
      	Node *temp= (Node *)(malloc(sizeof (Node)));
         temp=*head;
-        while(temp->data!=value)
+        while(temp->data!=data)
         {
             temp=temp->next;
         }
+        Node *temp1= (Node *)(malloc(sizeof (Node)));
+        temp1->data=value;
+        temp1->next=temp->next;
+        temp->next=temp1;
         return temp;
  }
  void printValue(Node *head)

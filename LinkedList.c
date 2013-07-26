@@ -19,7 +19,9 @@ void printValue(Node *head);
 void insertback(int data, Node **head);
 void deleteStart(Node **head);
 void deleteEnd(Node **head);
+void deleteAt(Node **head,int value);
 Node* insertAt(Node **head,int data,int value);
+void emptyList(Node **head);
 int main(void)
 {
     int i=0;
@@ -81,6 +83,24 @@ int main(void)
                 printf("Insert element u want to enter");
                 scanf("%d",&value);
                 insertAt(&head,data,value);
+                printValue(head);
+                break;
+            }
+            
+            case 6:
+            {
+                printValue(head);
+                printf(" Enter the element to be deleted");
+                scanf("%d",&data);
+                deleteAt(&head,data);
+                printValue(head);
+                break;
+                
+            }
+            case 7:
+            {
+                printValue(head);
+                emptyList(&head);
                 printValue(head);
                 break;
             }
@@ -149,6 +169,8 @@ void insertback(int data, Node **head)
  {
 	Node *temp= (Node *)(malloc(sizeof (Node)));
 	 temp=head;
+         if(temp==NULL)
+             printf(" List is empty ");
 	 while(temp != NULL )
 	 {
 		 printf("%d\t",temp->data);
@@ -171,4 +193,31 @@ void insertback(int data, Node **head)
            temp=temp->next; 
         }
         temp->next=NULL;
+ }
+
+ void deleteAt(Node **head, int value)
+ {
+     Node *temp= (Node *)(malloc(sizeof (Node)));
+        temp=*head;
+        while(temp->next->data!=value)
+        {
+            temp=temp->next;
+        }
+        temp->next=temp->next->next;
+        
+ }
+ 
+ void emptyList(Node **head)
+ {
+     Node *temp= (Node *)(malloc(sizeof (Node)));
+          Node *temp1= (Node *)(malloc(sizeof (Node)));
+
+     temp=head;
+     while(temp->next!=NULL)
+     {
+         temp1=temp->next;
+         free(temp);
+         temp=temp1;
+     }
+     *head=NULL;
  }

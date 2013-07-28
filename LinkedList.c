@@ -22,6 +22,7 @@ void deleteEnd(Node **head);
 void deleteAt(Node **head,int value);
 Node* insertAt(Node **head,int data,int value);
 void emptyList(Node **head);
+Node* findMthElement(Node *head,int data);
 int main(void)
 {
     int i=0;
@@ -38,6 +39,7 @@ int main(void)
         printf("\n6: Delete element at a position");
         printf("\n7: Empty Linked List");
         printf("\n8: Print Linked List ");
+        printf("\n10: Print Mth Element - to the Last ");
         printf("\n9 : Exit");
         scanf("%d",&i);
 
@@ -105,7 +107,19 @@ int main(void)
                 break;
             }
             case 8:
+            {
                 printValue(head);
+                break;
+            }
+            case 10:
+            {
+                printf(" Enter the Value for M - Where m is the mth element to the last ");
+                scanf("%d",&data);
+                Node *temp=findMthElement(head,data);
+                if(temp!=NULL)
+                printf("%d",temp->data);
+                break;
+            }
         }
     }
 
@@ -212,7 +226,7 @@ void insertback(int data, Node **head)
      Node *temp= (Node *)(malloc(sizeof (Node)));
           Node *temp1= (Node *)(malloc(sizeof (Node)));
 
-     temp=head;
+     temp=*head;
      while(temp->next!=NULL)
      {
          temp1=temp->next;
@@ -220,4 +234,31 @@ void insertback(int data, Node **head)
          temp=temp1;
      }
      *head=NULL;
+ }
+ 
+ Node * findMthElement(Node *head, int data)
+ {
+     Node *temp= (Node *)(malloc(sizeof (Node)));
+     temp =head;
+     int i=0;
+     for(i=0;i<data;i++)
+     {
+         if(temp==NULL)
+             break;
+         temp=temp->next;
+     }
+     if(temp==NULL)
+     {
+         printf("M Greater than size of the List");
+         head=NULL;
+     }
+     else
+     {
+     while(temp->next!=NULL)
+     {
+         temp=temp->next;
+         head=head->next;
+     }
+     }
+     return head;
  }
